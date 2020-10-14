@@ -8,5 +8,3 @@
 launch_app <- function(){
   runApp("inst/app/CoronaShiny.R")
 }
-
-runApp("inst/app/CoronaShiny.R")
