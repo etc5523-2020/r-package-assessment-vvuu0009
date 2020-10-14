@@ -1,15 +1,14 @@
-Package: yourPkg
-Title: What the Package Does (One Line, Title Case)
+Package: CoronaShiny
+Title: Communicating with Data Coronavirus Shiny Application Package
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Vinny",
+           family = "Vu",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
+           email = "vvuu0009@student.monash.edu",
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to
-    pick a license
+Description: This package contains the shiny applicaiton exploring the current state of coronavirus.
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
