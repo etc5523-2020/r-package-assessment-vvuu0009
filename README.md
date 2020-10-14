@@ -5,6 +5,8 @@
 
 <!-- badges: start -->
 
+[![R build
+status](https://github.com/etc5523-2020/r-package-assessment-vvuu0009/workflows/R-CMD-check/badge.svg)](https://github.com/etc5523-2020/r-package-assessment-vvuu0009/actions)
 <!-- badges: end -->
 
 The goal of CoronaShiny is to …
