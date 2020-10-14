@@ -2,7 +2,7 @@
 #'
 #' @description This function runs the Coronavirus Shiny Application
 #'
-#' @return The Shiny Applicaiton 
+#' @return The Shiny Application 
 #'
 #' @export
 launch_app <- function(){
