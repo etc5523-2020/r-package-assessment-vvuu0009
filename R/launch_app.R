@@ -4,7 +4,9 @@
 #'
 #' @return The Shiny Application 
 #'
+#' @import shiny
+#'
 #' @export
 launch_app <- function(){
-  runApp("inst/app/CoronaShiny.R")
+  shiny::runApp("inst/app/CoronaShiny.R")
 }
