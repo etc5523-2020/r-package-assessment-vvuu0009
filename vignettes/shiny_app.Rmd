@@ -1,0 +1,19 @@
+---
+title: "Current State of Coronavirus Around the World"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Current State of Coronavirus Around the World}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(CoronaShiny)
+```

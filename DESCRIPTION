@@ -23,3 +23,7 @@ Imports:
     DT
 Depends: 
     shiny
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
