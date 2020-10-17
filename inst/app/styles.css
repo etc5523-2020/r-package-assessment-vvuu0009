@@ -6,3 +6,8 @@ body {
 .well {
   background-color: #505050;
 }
+
+div.datatables {
+    color: #fff;
+}
+
