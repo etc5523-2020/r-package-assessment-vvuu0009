@@ -1,66 +1,6 @@
-#Library
-library(shiny)
-library(coronavirus)
-library(tidyverse)
+library(magrittr)
 library(plotly)
-library(countrycode)
-library(kableExtra)
 library(DT)
-
-#Data
-data("coronavirus")
-
-#Wrangling 
-corona_cont <- coronavirus %>%
-    mutate(continent = countrycode(sourcevar = country, 
-                                   origin = "country.name",
-                                   destination = "continent")) %>%
-    group_by(date,continent,type) %>%
-    summarise(cases = sum(cases)) %>%
-    drop_na()
-
-cum <- coronavirus %>%
-    filter(type == "confirmed") %>%
-    group_by(country, date) %>%
-    summarise(cases = sum(cases)) %>%
-    group_by(country) %>%
-    mutate('total confirmed' = cumsum(cases))
-
-tab <- coronavirus %>%
-    group_by(date,country,type) %>%
-    summarise(cases = sum(cases)) %>%
-    pivot_wider(names_from = type,
-                values_from = cases) %>%
-    group_by(country) %>%
-    mutate('Total Confirmed' = cumsum(confirmed),
-           'Total Deaths' = cumsum(death),
-           'Total Recovered' = cumsum(recovered)) %>%
-    filter(date == "2020-07-31") %>%
-    select(-date,-confirmed,-death,-recovered) %>%
-    arrange(-`Total Confirmed`) %>%
-    rename(Country = country) %>%
-    mutate(`Total Confirmed`= as.numeric(`Total Confirmed`),
-           `Total Deaths` = as.numeric(`Total Deaths`),
-           `Total Recovered` = as.numeric(`Total Recovered`)) %>%
-    mutate(`Total Confirmed`= scales::comma(`Total Confirmed`,1),
-           `Total Deaths` = scales::comma(`Total Deaths`,1),
-           `Total Recovered` = scales::comma(`Total Recovered`,1))
-
-p1_data <- cum %>%
-    filter(country %in% c("US","Brazil","India","Russia","South Africa","Mexico")) 
-
-p1_data$country <- p1_data$country %>% factor(levels = c("US","Brazil","India","Russia","South Africa","Mexico"))
-
-reftab <- tibble(References = c("Arel-Bundock, Vincent, Nils Enevoldsen, and CJ Yetman. 2018. “Countrycode: An R Package to Convert Country Names and Country Codes.” Journal of Open Source Software 3 (28): 848. https://doi.org/10.21105/joss.00848.", 
-                      "Chang, Winston, Joe Cheng, JJ Allaire, Yihui Xie, and Jonathan McPherson. 2020. Shiny: Web Application Framework for R. https://CRAN.R-project.org/package=shiny.",
-                      "Krispin, Rami, and Jarrett Byrnes. 2020. Coronavirus: The 2019 Novel Coronavirus Covid-19 (2019-nCoV) Dataset. https://CRAN.R-project.org/package=coronavirus.",
-                      "Sievert, Carson. 2020. Interactive Web-Based Data Visualization with R, Plotly, and Shiny. Chapman; Hall/CRC. https://plotly-r.com.",
-                      "Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” Journal of Open Source Software 4 (43): 1686. https://doi.org/10.21105/joss.01686.",
-                      "Xie, Yihui, Joe Cheng, and Xianying Tan. 2020. DT: A Wrapper of the Javascript Library ’Datatables’. https://CRAN.R-project.org/package=DT.",
-                      "Zhu, Hao. 2020. KableExtra: Construct Complex Table with ’Kable’ and Pipe Syntax. https://CRAN.R-project.org/package=kableExtra.",
-                      "Health, Australian Government Department of. 2020. “What You Need to Know About Coronavirus (Covid-19).” Australian Government Department of Health. Australian Government Department of Health. https://www.health.gov.au/news/health-alerts/novel-coronavirus-2019-ncov-health-alert/what-you-need-to-know-about-coronavirus-covid-19.",
-                      "“Coronavirus.” n.d. World Health Organization. World Health Organization. https://www.who.int/health-topics/coronavirus#tab=tab_1."
-))
 
 ui <- fluidPage(
     titlePanel("ETC5523: Shiny Assessment"),
@@ -79,11 +19,11 @@ ui <- fluidPage(
         br(),
         h3("Line Graph Showing Cumulative Confirmed Coronavirus Cases of the Top 6 Countries"),
         textOutput("section2"),
-        plotlyOutput("p1"),
+        plotly::plotlyOutput("p1"),
         verbatimTextOutput("hover"),
         h3("Line Graph Showing Cumulative Confirmed Coronavirus Cases of the Top Countries excluding the US"),
         textOutput("section3"),
-        plotlyOutput("p2"),
+        plotly::plotlyOutput("p2"),
         br(),
         h3("Cumulative Case Numbers by Country as at 31st July 2020"),
         textOutput("tab"),
@@ -114,74 +54,46 @@ server <- function(input, output) {
         paste("Line Graph Showing Daily", input$type, "Coronavirus Cases by Continent -", input$continent)
     })
     
-    output$cases <- renderPlot(
-        corona_cont %>%
-            filter(type == input$type) %>%
-            filter(continent == input$continent) %>%
-            ggplot(aes(x = date, 
-                       y = cases,
-                       colour = continent)) +
-            geom_line(color = "yellow") +
-            theme(axis.title.x = element_text(margin = margin(t = 1)),
-                  panel.grid.major = element_line(colour = "white", size = 0.1, linetype = "dashed"),
-                  panel.grid.minor = element_line(colour = "white", size = 0.1, linetype = "dashed"),
-                  legend.position = "none",
-                  panel.background = element_rect(fill = "black"),
-                  plot.background = element_rect(fill = "black", color = NA),
-                  text = element_text(color = "white"),
-                  axis.line = element_line(color = "white"),
-                  axis.text = element_text(color = "white")) +
-            labs(x = "Date",
-                 y = paste("Daily", input$type , "Cases"))
-    )
+    output$cases <- renderPlot({
+        
+        plot1 <- corona_cont %>%
+            dplyr::filter(type == input$type) %>%
+            dplyr::filter(continent == input$continent) %>%
+            ggplot2::ggplot(aes(x = date, 
+                                y = cases,
+                                colour = continent)) +
+            ggplot2::geom_line(color = "yellow") +
+            ggplot2::theme(axis.title.x = element_text(margin = margin(t = 1)),
+                           panel.grid.major = element_line(colour = "white", size = 0.1, linetype = "dashed"),
+                           panel.grid.minor = element_line(colour = "white", size = 0.1, linetype = "dashed"),
+                           legend.position = "none",
+                           panel.background = element_rect(fill = "black"),
+                           plot.background = element_rect(fill = "black", color = NA),
+                           text = element_text(color = "white"),
+                           axis.line = element_line(color = "white"),
+                           axis.text = element_text(color = "white")) +
+            ggplot2::labs(x = "Date",
+                          y = paste("Daily", input$type , "Cases"))
+        
+        plot1 
+    })
     
     output$sumtab <- renderDataTable({
-        tab2 <- coronavirus  %>% group_by(date,country,type) %>%
-            summarise(cases = sum(cases)) %>%
-            pivot_wider(names_from = type,
-                        values_from = cases) %>%
-            group_by(country) %>%
-            mutate('Total confirmed' = cumsum(confirmed),
-                   'Total death' = cumsum(death),
-                   'Total recovered' = cumsum(recovered)) %>%
-            filter(date == "2020-07-31") %>%
-            select(-date,-confirmed,-death,-recovered) %>%
-            arrange(-`Total confirmed`) %>%
-            rename(Country = country) %>%
-            mutate(`Total confirmed`= scales::comma(`Total confirmed`,1),
-                   `Total death` = scales::comma(`Total death`,1),
-                   `Total recovered` = scales::comma(`Total recovered`,1))%>% 
-            mutate(continent = countrycode(sourcevar = Country, 
-                                           origin = "country.name",
-                                           destination = "continent")) %>%
-            filter(continent == input$continent)
         
-        datatable(tab2, 
-                  options = list(columnDefs = list(list(
-                      className = 'dt-right', targets = c(2,3,4)
-                  )))) %>% 
-            formatStyle(columns = c(0,1,2,3,4,5), color = "white", backgroundColor = "black") %>% 
-            formatStyle(columns = paste("Total", input$type), color = "white", backgroundColor = "grey")
+        tab2 %>%
+            dplyr::filter(continent == input$continent)%>% 
+            DT::datatable( options = list(columnDefs = list(list(
+                    className = 'dt-right', targets = c(2,3,4)
+                )))) %>% 
+            DT::formatStyle(columns = c(0,1,2,3,4,5), color = "white", backgroundColor = "black") %>%
+            DT::formatStyle(columns = paste("Total", input$type), color = "white", backgroundColor = "grey")
+        
+        
 
     })
     
     output$p1 <- renderPlotly({
-        p1 <- p1_data %>%
-            ggplot(aes(x = date,
-                       y = `total confirmed`,
-                       colour = country)) +
-            geom_line() +
-            scale_color_manual(breaks = c("US","Brazil","India","Russia","South Africa", "Mexico"),
-                               values = c("yellow","purple", "cyan4", "darkorange", "red", "blue")) +
-            theme(axis.title.x = element_text(margin = margin(t = 25)),
-                  panel.background = element_rect(fill = "transparent"),
-                  plot.background = element_rect(fill = "transparent", color = NA),
-                  legend.background = element_rect(fill = "transparent"),
-                  text = element_text(color = "white"),
-                  axis.line = element_line(color = "white"),
-                  axis.text = element_text(color = "white")) +
-            labs(y = "Cumulative Coronavirus Cases",
-                 x = "Date")
+        
         p1
     })
     
@@ -190,32 +102,13 @@ server <- function(input, output) {
     })
     
     output$p2 <- renderPlotly({
-        p2 <- p1_data %>%
-            filter(country %in% c("Brazil","India","Russia","South Africa", "Mexico")) %>%
-            filter(date <= "2020-06-30" & date >= "2020-04-01") %>%
-            ggplot(aes(x = date,
-                       y = `total confirmed`,
-                       colour = country)) +
-            geom_line() +
-            scale_color_manual(breaks = c("Brazil","India","Russia","South Africa", "Mexico"),
-                               values = c("purple", "cyan4", "darkorange", "red", "blue")) +
-            theme(axis.title.x = element_text(margin = margin(t = 25)),
-                  panel.background = element_rect(fill = "transparent"),
-                  plot.background = element_rect(fill = "transparent", color = NA),
-                  legend.background = element_rect(fill = "transparent"),
-                  text = element_text(color = "white"),
-                  axis.line = element_line(color = "white"),
-                  axis.text = element_text(color = "white")) +
-            labs(y = "Cumulative Coronavirus Cases",
-                 x = "Date")
+        
         p2
     })
     
     output$table <- renderDataTable({
-        datatable(tab, 
-                  options = list(columnDefs = list(list(
-                      className = 'dt-right', targets = c(2,3,4)
-                  )))) %>% formatStyle(columns = c(0,1,2,3,4), color = "white", backgroundColor = "black")
+        
+        tab
     })
     
     output$section1 <- renderText({
