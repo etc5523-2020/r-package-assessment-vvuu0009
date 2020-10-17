@@ -22,10 +22,9 @@ Imports:
     DT,
     tidyr,
     tibble,
-    magrittr
+    magrittr,
+    shiny
 Suggests: 
     knitr,
     rmarkdown
 VignetteBuilder: knitr
-Depends: 
-    shiny
