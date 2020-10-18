@@ -2,10 +2,24 @@
 % Please edit documentation in R/cumplot.R
 \name{cumplot}
 \alias{cumplot}
-\title{This function}
+\title{Cumplot}
 \usage{
 cumplot(Type, Continent)
 }
+\arguments{
+\item{Type}{The case type to be plotted being: confirmed, death or recovered}
+
+\item{Continent}{The Continent to be plotted being: Africa, America, Asia, Europe and Oceania}
+}
+\value{
+The line plot plotting the date on the x-axis and daily cases for the selected \code{Type} and \code{Continent} on the y-axis
+}
 \description{
-This function runs the Coronavirus Shiny Application
+This function produces a line graph of coronavirus cases for a selected case type and continent with date on the x-axis and daily cases for the selected \code{Type} and \code{Continent} on the y-axis
+}
+\examples{
+
+cumplot("confirmed","Africa")
+cumplot("death","Oceania")
+
 }

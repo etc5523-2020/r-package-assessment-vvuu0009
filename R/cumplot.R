@@ -1,8 +1,17 @@
-#' This function
-#' @description This function runs the Coronavirus Shiny Application
+#' Cumplot 
+#' @description This function produces a line graph of coronavirus cases for a selected case type and continent with date on the x-axis and daily cases for the selected `Type` and `Continent` on the y-axis 
 #' 
 #' @import magrittr
 #' 
+#' @param Type The case type to be plotted being: confirmed, death or recovered
+#' @param Continent The Continent to be plotted being: Africa, America, Asia, Europe and Oceania 
+#' 
+#' @return The line plot plotting the date on the x-axis and daily cases for the selected `Type` and `Continent` on the y-axis
+#' 
+#' @examples 
+#' 
+#' cumplot("confirmed","Africa")
+#' cumplot("death","Oceania")
 #' 
 #' @export
 cumplot <- function(Type,Continent){
