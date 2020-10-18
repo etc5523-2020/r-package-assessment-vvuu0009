@@ -11,6 +11,6 @@ An object of class \code{grouped_df} (inherits from \code{tbl_df}, \code{tbl}, \
 coronavirus_july20
 }
 \description{
-56mins
+This shows cumulative cases as at July 2020
 }
 \keyword{datasets}
