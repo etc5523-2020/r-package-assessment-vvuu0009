@@ -7,8 +7,8 @@
 launch_app()
 }
 \value{
-The Shiny Application
+The Shiny Application exploring the state of Coronavirus as at July 31 2020
 }
 \description{
-This function runs the Coronavirus Shiny Application
+This function runs the Coronavirus Shiny Application exploring the state of Coronavirus as at July 31 2020
 }

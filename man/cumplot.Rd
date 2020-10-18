@@ -15,7 +15,7 @@ cumplot(Type, Continent)
 The line plot plotting the date on the x-axis and daily cases for the selected \code{Type} and \code{Continent} on the y-axis
 }
 \description{
-This function produces a line graph of coronavirus cases for a selected case type and continent with date on the x-axis and daily cases for the selected \code{Type} and \code{Continent} on the y-axis
+This function produces a line graph of coronavirus cases for a selected case type and continent with date on the x-axis and daily cases for the selected \code{Type} and \code{Continent} on the y-axis.
 }
 \examples{
 
