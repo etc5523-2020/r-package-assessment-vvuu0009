@@ -1,7 +1,7 @@
 #' Cumplot 
 #' @description This function produces a line graph of coronavirus cases for a selected case type and continent with date on the x-axis and daily cases for the selected `Type` and `Continent` on the y-axis. 
 #' 
-#' @import magrittr
+#' @importFrom magrittr %>%
 #' 
 #' @param Type The case type to be plotted being: confirmed, death or recovered
 #' @param Continent The Continent to be plotted being: Africa, America, Asia, Europe and Oceania 

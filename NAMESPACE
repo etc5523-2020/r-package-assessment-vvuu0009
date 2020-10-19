@@ -3,6 +3,6 @@
 export(cumplot)
 export(launch_app)
 export(selectInput01)
-import(magrittr)
 import(shiny)
 import(tibble)
+importFrom(magrittr,"%>%")
