@@ -21,6 +21,6 @@ a tibble with 188 observations and 5 variables
 coronavirus_july20
 }
 \description{
-This shows cumulative coronavirus cases as at 31 July 2020 for each country
+This data set shows the cumulative coronavirus cases as at 31 July 2020 for each country
 }
 \keyword{datasets}
