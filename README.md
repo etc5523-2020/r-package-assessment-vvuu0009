@@ -31,6 +31,9 @@ devtools::install_github("etc5523-2020/r-package-assessment-vvuu0009")
 This package contains the shiny application and functions exploring the
 current state of coronavirus as at 31 July 2020.
 
+Follow the link to go to the pkgdown website for more information:
+[CoronaShiny](https://etc5523-2020.github.io/r-package-assessment-vvuu0009/)
+
 The main functions in this package includes:
 
   - **launch\_app**: This function runs the Coronavirus Shiny
