@@ -3,14 +3,24 @@
 \docType{data}
 \name{coronavirus_july20}
 \alias{coronavirus_july20}
-\title{56mins}
+\title{coronavirus_july20}
 \format{
-An object of class \code{grouped_df} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 188 rows and 5 columns.
+a tibble with 188 observations and 5 variables
+\itemize{
+\item \strong{Country}: fully country name
+\item \strong{Continent}: full continent name
+\item \strong{Total Confirmed}: the cumulative confirmed coronavirus cases as at 31 July 2020
+\item \strong{Total Deaths}: the cumulative coronavirus death cases as at 31 July 2020
+\item \strong{Total Recovered}: the cumulative recovery coronavirus case as at 31 July 2020
+}
+}
+\source{
+\href{https://github.com/RamiKrispin/coronavirus}{Coronavirus Github}
 }
 \usage{
 coronavirus_july20
 }
 \description{
-This shows cumulative cases as at July 2020
+This shows cumulative coronavirus cases as at 31 July 2020 for each country
 }
 \keyword{datasets}
