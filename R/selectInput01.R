@@ -9,9 +9,6 @@
 #' @examples 
 #' selectInput01("continent", corona_cont$continent)
 #' 
-#' returns 
-#' 
-#' selectInput("continent", "select the continent", choices = corona_cont$continent)
 #'
 #' 
 #' @export

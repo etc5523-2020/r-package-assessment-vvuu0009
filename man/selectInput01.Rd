@@ -11,15 +11,13 @@ selectInput01(id, column)
 
 \item{column}{The specific column from the data set we wish to extract the values to appear as the options for the selectInput}
 }
+\value{
+selectInput("continent", "select the continent", choices = corona_cont$continent)
+}
 \description{
 This function changes the selectInput function of the Shiny app based on the desired input
 }
 \examples{
 selectInput01("continent", corona_cont$continent)
-
-returns 
-
-selectInput("continent", "select the continent", choices = corona_cont$continent)
-
 
 }
