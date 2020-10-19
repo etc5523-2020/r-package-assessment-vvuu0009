@@ -39,8 +39,8 @@ The main functions in this package includes:
     cases for a selected case type and continent with date on the x-axis
     and daily cases for the selected `Type` and `Continent` on the
     y-axis.
-  - \***selectInput01**: This function changes the selectInput function
-    of the Shiny app based on the desired input
+  - **selectInput01**: This function changes the selectInput function of
+    the Shiny app based on the desired input
 
 This package also contains the following data sets:
 
