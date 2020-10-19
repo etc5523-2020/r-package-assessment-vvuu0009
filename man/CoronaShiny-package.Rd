@@ -6,7 +6,7 @@
 \alias{CoronaShiny-package}
 \title{CoronaShiny: Communicating with Data Coronavirus Shiny Application Package}
 \description{
-This package contains the shiny applicaiton exploring the current state of coronavirus.
+This package contains the shiny application exploring the current state of coronavirus.
 }
 \author{
 \strong{Maintainer}: Vinny Vu \email{vvuu0009@student.monash.edu} (\href{https://orcid.org/YOUR-ORCID-ID}{ORCID})

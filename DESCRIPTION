@@ -7,7 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "vvuu0009@student.monash.edu",
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: This package contains the shiny applicaiton exploring the current state of coronavirus.
+Description: This package contains the shiny application exploring the current state of coronavirus.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
