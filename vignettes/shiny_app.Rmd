@@ -56,6 +56,14 @@ coronavirus_july20
 
 Below displays an example cumplot for confirmed cases in Asia
 
-```{r}
+```{r cumplot}
 cumplot("confirmed", "Asia")
 ```
+
+
+Below displays an example use of the selectInput01 function to select `Type` as the select input variable from the `coroan_cont` dataset.
+
+```{r selectInput01 , eval=FALSE}
+selectInput01("type", corona_cont$type)
+```
+
