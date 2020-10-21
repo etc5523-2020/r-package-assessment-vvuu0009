@@ -87,7 +87,13 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">CoronaShiny</span><span class="op">)</span></pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">CoronaShiny</span><span class="op">)</span>
+<span class="co">#&gt; Warning: replacing previous import 'ggplot2::last_plot' by 'plotly::last_plot'</span>
+<span class="co">#&gt; when loading 'CoronaShiny'</span>
+<span class="co">#&gt; Warning: replacing previous import 'DT::dataTableOutput' by</span>
+<span class="co">#&gt; 'shiny::dataTableOutput' when loading 'CoronaShiny'</span>
+<span class="co">#&gt; Warning: replacing previous import 'DT::renderDataTable' by</span>
+<span class="co">#&gt; 'shiny::renderDataTable' when loading 'CoronaShiny'</span></pre></div>
 <p>This package contains the shiny application and functions exploring the current state of coronavirus as at 31 July 2020.</p>
 <p>The main functions in this package includes:</p>
 <ul>
@@ -121,6 +127,7 @@
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/">tibble</a></span><span class="op">)</span>
 <span class="va">corona_cont</span>
 <span class="co">#&gt; # A tibble: 2,880 x 4</span>
+<span class="co">#&gt; # Groups:   date, continent [960]</span>
 <span class="co">#&gt;    date       continent type      cases</span>
 <span class="co">#&gt;    &lt;date&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;int&gt;</span>
 <span class="co">#&gt;  1 2020-01-22 Africa    confirmed     0</span>
@@ -137,6 +144,7 @@
 <div class="sourceCode" id="cb4"><pre class="downlit">
 <span class="va">coronavirus_july20</span>
 <span class="co">#&gt; # A tibble: 188 x 5</span>
+<span class="co">#&gt; # Groups:   Country [188]</span>
 <span class="co">#&gt;    Country        Continent `Total Confirmed` `Total Deaths` `Total Recovered`</span>
 <span class="co">#&gt;    &lt;chr&gt;          &lt;chr&gt;                 &lt;dbl&gt;          &lt;dbl&gt;             &lt;dbl&gt;</span>
 <span class="co">#&gt;  1 US             Americas            4562038         153314           1438160</span>
@@ -153,7 +161,10 @@
 <p>Below displays an example cumplot for confirmed cases in Asia</p>
 <div class="sourceCode" id="cb5"><pre class="downlit">
 <span class="fu"><a href="../reference/cumplot.html">cumplot</a></span><span class="op">(</span><span class="st">"confirmed"</span>, <span class="st">"Asia"</span><span class="op">)</span></pre></div>
-<p><img src="shiny_app_files/figure-html/unnamed-chunk-2-1.png" width="624"></p>
+<p><img src="shiny_app_files/figure-html/cumplot-1.png" width="624"></p>
+<p>Below displays an example use of the selectInput01 function to select <code>Type</code> as the select input variable from the <code>coroan_cont</code> dataset.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="fu"><a href="../reference/selectInput01.html">selectInput01</a></span><span class="op">(</span><span class="st">"type"</span>, <span class="va">corona_cont</span><span class="op">$</span><span class="va">type</span><span class="op">)</span></pre></div>
 </div>
   </div>
 
