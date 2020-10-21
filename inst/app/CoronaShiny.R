@@ -3,6 +3,7 @@ library(magrittr)
 library(dplyr)
 library(plotly)
 library(DT)
+library(coronavirus)
 #Data
 data("coronavirus")
 
