@@ -4,7 +4,7 @@
 #'
 #' @return The Shiny Application exploring the state of Coronavirus as at July 31 2020 
 #'
-#' @import shiny DT plotly coronavirus magrittr ggplot2
+#' @import shiny
 #' 
 #' @example 
 #' launch_app()
