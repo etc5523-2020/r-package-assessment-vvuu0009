@@ -1,4 +1,8 @@
 library(ggplot2)
+library(magrittr)
+library(dplyr)
+library(plotly)
+library(DT)
 #Data
 data("coronavirus")
 
