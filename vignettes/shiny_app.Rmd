@@ -1,0 +1,69 @@
+---
+title: "Current State of Coronavirus Around the World"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Current State of Coronavirus Around the World}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.width = 6.5
+)
+```
+
+```{r setup}
+library(CoronaShiny)
+```
+
+This package contains the shiny application and functions exploring the current state of coronavirus as at 31 July 2020.
+
+The main functions in this package includes:
+
+- **launch_app**: This function runs the Coronavirus Shiny Application exploring the state of Coronavirus as at July 31 2020  
+- **cumplot**: This function produces a line graph of coronavirus cases for a selected case type and continent with date on the x-axis and daily cases for the selected `Type` and `Continent` on the y-axis.
+- **selectInput01**: This function changes the selectInput function of the Shiny app based on the desired input 
+
+This package also contains the following data sets:
+
+- **corona_cont**: This data set shows the daily coronavirus cases by each continent by case type
+- **coronavirus_july20**: This data set shows the cumulative coronavirus cases as at 31 July 2020 for each country 
+
+## Launching Application
+
+The applicaiton can be launched by using the following line of code:
+
+```{r launch, eval=FALSE}
+launch_app()
+```
+
+
+## Example
+
+Below displays a sample of both data sets:
+
+```{r corona_cont}
+library(tibble)
+corona_cont
+```
+
+```{r coronavirus_july20}
+coronavirus_july20
+```
+
+Below displays an example cumplot for confirmed cases in Asia
+
+```{r cumplot}
+cumplot("confirmed", "Asia")
+```
+
+
+Below displays an example use of the selectInput01 function to select `Type` as the select input variable from the `coroan_cont` dataset.
+
+```{r selectInput01 , eval=FALSE}
+selectInput01("type", corona_cont$type)
+```
+
