@@ -11,5 +11,10 @@
 #'
 #' @export
 launch_app <- function(){
-  shiny::runApp("inst/app/CoronaShiny.R")
+  appDir <- system.file("app", package = "CoronaShiny")
+  if (appDir == "") {
+    stop("Could not find example directory. Try re-installing `CoronaShiny`.", call. = FALSE)
+  }
+  
+  shiny::runApp(appDir, display.mode = "normal")
 }
